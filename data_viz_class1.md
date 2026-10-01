@@ -179,3 +179,77 @@ weather_df |>
     ## (`stat_density()`).
 
 ![](data_viz_class1_files/figure-gfm/unnamed-chunk-10-2.png)<!-- -->
+boxplots
+
+``` r
+weather_df |> 
+  ggplot(aes(x = name, y = tmax)) +
+  geom_boxplot()
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+![](data_viz_class1_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+violin plot
+
+``` r
+weather_df |> 
+  ggplot(aes(x = name, y = tmax)) +
+  geom_violin()
+```
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+![](data_viz_class1_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+ridge plot
+
+``` r
+weather_df |> 
+  ggplot(aes(x = tmax, y = name)) +
+  geom_density_ridges()
+```
+
+    ## Picking joint bandwidth of 1.54
+
+    ## Warning: Removed 17 rows containing non-finite outside the scale range
+    ## (`stat_density_ridges()`).
+
+![](data_viz_class1_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+save some plots
+
+``` r
+ggp_weather =
+  weather_df |> 
+  ggplot(aes(x = date, y = tmax, color = name)) +
+  geom_point(aes(size = prcp), alpha = .5) +
+  facet_grid(. ~ name)
+
+ggp_weather
+```
+
+    ## Warning: Removed 19 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](data_viz_class1_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
+``` r
+ggsave("ggp_weather.pdf", ggp_weather)
+```
+
+    ## Saving 7 x 5 in image
+
+    ## Warning: Removed 19 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+``` r
+weather_df |> 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_point()
+```
+
+    ## Warning: Removed 17 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](data_viz_class1_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
